@@ -1,0 +1,17 @@
+node_modules/
+
+dist/
+build/
+
+.DS_Store
+Thumbs.db
+
+*.log
+
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+*.tmp
+*.swp

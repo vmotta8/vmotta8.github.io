@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+    }
+    .container {
+      width: 90%;
+      max-width: 960px;
+      margin: auto;
+      overflow: hidden;
+      padding: 0 20px;
+    }
+    header {
+      background: #e9ecef;
+      color: #555;
+      padding: 20px 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 0;
+      text-align: center;
+      font-weight: 600;
+      font-size: 2em;
+    }
+    header h1::before {
+      content: "🚀 ";
+    }
+    .description {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1.1em;
+      line-height: 1.5;
+      color: #555;
+    }
+    .social-networks a {
+      margin: 0 10px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .social-networks img {
+      width: 24px;
+      height: 24px;
+    }
+    main {
+      padding: 20px 0;
+    }
+    #posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      #posts {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    }
+    @media (max-width: 480px) {
+      #posts {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+    .post {
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+      color: #000;
+      transition: color 0.3s;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .post img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: box-shadow 0.3s;
+    }
+    .post h2 {
+      margin-top: 0;
+      font-weight: 600;
+    }
+    .post .post-date {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .post:hover {
+      color: #006400;
+    }
+    .post:hover h2,
+    .post:hover .post-date,
+    .post:hover p {
+      color: #006400;
+    }
+    .post:hover img {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+    footer {
+      background: #ccc;
+      color: #333;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Welcome to My Blog</h1>
+      <div class="description">
+        <p>Hello, I'm [Your Name]. I'm passionate about technology, programming, and innovation. Join me as I explore modern design, creative projects, and the latest tech trends!</p>
+        <div class="social-networks">
+          <a href="https://twitter.com/yourusername" target="_blank">
+            <img src="assets/icons/twitter.png" alt="Twitter">
+          </a>
+          <a href="https://github.com/yourusername" target="_blank">
+            <img src="assets/icons/github.png" alt="GitHub">
+          </a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank">
+            <img src="assets/icons/linkedin.png" alt="LinkedIn">
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section id="posts">
+        <a class="post" href="posts/post1.html">
+          <img src="assets/post1/image.png" alt="Post 1 Image">
+          <h2>Post Title 1</h2>
+          <p class="post-date">Apr 3, 2025</p>
+          <p>This is a brief description of Post 1, summarizing its content.</p>
+        </a>
+
+        <a class="post" href="posts/post2.html">
+          <img src="assets/post2/image.png" alt="Post 2 Image">
+          <h2>Post Title 2</h2>
+          <p class="post-date">Apr 3, 2025</p>
+          <p>This is a brief description of Post 2, discussing an interesting topic.</p>
+        </a>
+
+        <a class="post" href="posts/post3.html">
+          <img src="assets/post3/image.png" alt="Post 3 Image">
+          <h2>Post Title 3</h2>
+          <p class="post-date">Apr 3, 2025</p>
+          <p>This is a brief description of Post 3, a must-read content.</p>
+        </a>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 My Blog</p>
+    </div>
+  </footer>
+
+</body>
+</html>
