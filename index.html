@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vinicius Motta</title>
@@ -10,9 +11,9 @@
       font-size: 18px;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color: #fdfdfd;
       color: #333;
-      line-height: 1.6;
+      line-height: 1.2;
     }
     .container {
       width: 90%;
@@ -22,7 +23,7 @@
     }
     /* Header */
     header {
-      background-color: #f0f0f0;
+      background-color: #fdfdfd;
       padding: 10px 0;
       margin-top: 30px;
     }
@@ -57,6 +58,7 @@
       text-decoration: none;
       color: #333;
       font-size: 1em;
+      font-weight: bold;
       transition: text-decoration 0.3s;
     }
     nav ul li a:hover {
@@ -89,13 +91,13 @@
       transition: background-color 0.3s;
     }
     .post:hover {
-      background-color: #e0e0e0;
+      background-color: #f5f5f5;
     }
     .post .post-text {
       flex: 1;
     }
     .post h2 {
-      font-size: 1.8em;
+      font-size: 2.2em;
       margin: 0 0 10px;
     }
     .post .post-date {
@@ -104,12 +106,37 @@
       margin-bottom: 10px;
     }
     .post .post-image {
-      margin-left: 20px;
+      margin-left: 30px;
     }
     .post .post-image img {
-      max-width: 150px;
+      max-width: 200px;
       height: auto;
       border-radius: 8px;
+    }
+
+    @media (max-width: 800px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .header-right {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .post {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .post .post-image {
+        margin-left: 0;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
@@ -142,34 +169,12 @@
       <section id="posts">
         <a class="post" href="posts/post1.html">
           <div class="post-text">
-            <h2>Post Title 1</h2>
+            <h2>Extracting code snippets from a call graph in go for LLM context</h2>
             <p class="post-date">Apr 3, 2025</p>
-            <p>This is a brief description of Post 1, summarizing its content.</p>
+            <p>This post explores how to extract meaningful code snippets from a call graph in go to provide better context for large language models (llms). we’ll go through the process, tools, and techniques to automate snippet extraction and improve code understanding.</p>
           </div>
           <div class="post-image">
             <img src="assets/post1/image.jpg" alt="Post 1 Image">
-          </div>
-        </a>
-
-        <a class="post" href="posts/post2.html">
-          <div class="post-text">
-            <h2>Post Title 2</h2>
-            <p class="post-date">Apr 3, 2025</p>
-            <p>This is a brief description of Post 2, discussing an interesting topic.</p>
-          </div>
-          <div class="post-image">
-            <img src="assets/post2/image.jpg" alt="Post 2 Image">
-          </div>
-        </a>
-
-        <a class="post" href="posts/post3.html">
-          <div class="post-text">
-            <h2>Post Title 3</h2>
-            <p class="post-date">Apr 3, 2025</p>
-            <p>This is a brief description of Post 3, a must-read content.</p>
-          </div>
-          <div class="post-image">
-            <img src="assets/post3/image.png" alt="Post 3 Image">
           </div>
         </a>
       </section>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vinicius Motta - About</title>
@@ -10,9 +11,9 @@
       font-size: 18px;
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background-color: #fdfdfd;
       color: #333;
-      line-height: 1.6;
+      line-height: 1.2;
     }
     .container {
       width: 90%;
@@ -21,7 +22,7 @@
       padding: 0 10px;
     }
     header {
-      background-color: #f0f0f0;
+      background-color: #fdfdfd;
       padding: 10px 0;
       margin-top: 30px;
     }
@@ -56,6 +57,7 @@
       text-decoration: none;
       color: #333;
       font-size: 1em;
+      font-weight: bold;
       transition: text-decoration 0.3s;
     }
     nav ul li a:hover {
@@ -71,7 +73,7 @@
     }
     main {
       padding: 20px 0;
-      margin-top: 40px;
+      margin-top: 10px;
     }
     #about {
       overflow: hidden;
@@ -93,6 +95,24 @@
       border-radius: 8px;
     }
     .about-text {
+    }
+
+    @media (max-width: 600px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .header-right {
+        margin-top: 10px;
+      }
+
+      .about-photo {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
     }
   </style>
 </head>
