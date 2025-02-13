@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinicius Motta</title>
+  <title>Vinicius Motta - About</title>
   <style>
     body {
       font-family: 'Baskerville', 'Hoefler Text', Garamond, 'Times New Roman', serif;
@@ -20,7 +20,6 @@
       margin: auto;
       padding: 0 10px;
     }
-    /* Header */
     header {
       background-color: #f0f0f0;
       padding: 10px 0;
@@ -74,42 +73,26 @@
       padding: 20px 0;
       margin-top: 40px;
     }
-    #posts {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    #about {
+      overflow: hidden;
     }
-    .post {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      text-decoration: none;
-      color: #333;
-      transition: background-color 0.3s;
+    #about h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
     }
-    .post:hover {
-      background-color: #e0e0e0;
+    .about-container {
     }
-    .post .post-text {
-      flex: 1;
-    }
-    .post h2 {
-      font-size: 1.8em;
-      margin: 0 0 10px;
-    }
-    .post .post-date {
-      font-size: 0.9em;
-      color: #666;
+    .about-photo {
+      float: left;
+      width: 200px;
+      margin-right: 20px;
       margin-bottom: 10px;
     }
-    .post .post-image {
-      margin-left: 20px;
-    }
-    .post .post-image img {
-      max-width: 150px;
-      height: auto;
+    .about-photo img {
+      width: 100%;
       border-radius: 8px;
+    }
+    .about-text {
     }
   </style>
 </head>
@@ -139,39 +122,18 @@
 
   <main>
     <div class="container">
-      <section id="posts">
-        <a class="post" href="posts/post1.html">
-          <div class="post-text">
-            <h2>Post Title 1</h2>
-            <p class="post-date">Apr 3, 2025</p>
-            <p>This is a brief description of Post 1, summarizing its content.</p>
+      <section id="about">
+        <h1>About</h1>
+        <div class="about-container">
+          <div class="about-photo">
+            <img src="assets/about/image.png" alt="Vinicius Motta">
           </div>
-          <div class="post-image">
-            <img src="assets/post1/image.jpg" alt="Post 1 Image">
+          <div class="about-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum maximus ligula, nec faucibus urna efficitur a. Donec faucibus, elit sit amet fermentum blandit, tortor magna tincidunt risus, in suscipit nisl metus vitae nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent consectetur magna nec tellus malesuada, quis lobortis lacus imperdiet.</p>
+            <p>Nullam vel sem id turpis tristique commodo. Suspendisse potenti. Duis at tincidunt lectus, quis blandit odio. Sed nec magna vitae lectus elementum molestie. Curabitur euismod nulla quis metus vestibulum, a tempus ex aliquam. Fusce sit amet ligula et mauris tempus consequat. Sed et magna quis lacus ullamcorper suscipit.</p>
+            <p>Integer non tortor non ipsum condimentum cursus. Proin a dui quis arcu imperdiet ultrices. Mauris in libero velit. Quisque eu nunc ut ligula vestibulum euismod. Maecenas auctor enim in elit scelerisque, sed suscipit metus bibendum. Morbi auctor, urna a cursus luctus, dui lorem ultricies odio, et malesuada justo lectus et odio.</p>
           </div>
-        </a>
-
-        <a class="post" href="posts/post2.html">
-          <div class="post-text">
-            <h2>Post Title 2</h2>
-            <p class="post-date">Apr 3, 2025</p>
-            <p>This is a brief description of Post 2, discussing an interesting topic.</p>
-          </div>
-          <div class="post-image">
-            <img src="assets/post2/image.jpg" alt="Post 2 Image">
-          </div>
-        </a>
-
-        <a class="post" href="posts/post3.html">
-          <div class="post-text">
-            <h2>Post Title 3</h2>
-            <p class="post-date">Apr 3, 2025</p>
-            <p>This is a brief description of Post 3, a must-read content.</p>
-          </div>
-          <div class="post-image">
-            <img src="assets/post3/image.png" alt="Post 3 Image">
-          </div>
-        </a>
+        </div>
       </section>
     </div>
   </main>
