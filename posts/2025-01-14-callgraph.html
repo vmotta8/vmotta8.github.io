@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vinicius Motta</title>
+  <title>Extracting Code Snippets - Vinicius Motta</title>
   <style>
     body {
       font-family: 'Baskerville', 'Hoefler Text', Garamond, 'Times New Roman', serif;
@@ -76,43 +76,20 @@
       padding: 20px 0;
       margin-top: 40px;
     }
-    #posts {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .post {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      text-decoration: none;
-      color: #333;
-      transition: background-color 0.3s;
-    }
-    .post:hover {
-      background-color: #f5f5f5;
-    }
-    .post .post-text {
-      flex: 1;
-    }
-    .post h2 {
+    .post-content h1 {
       font-size: 2.2em;
       margin: 0 0 10px;
     }
-    .post .post-date {
+    .post-content .post-date {
       font-size: 0.9em;
       color: #666;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
-    .post .post-image {
-      margin-left: 30px;
-    }
-    .post .post-image img {
-      max-width: 200px;
+    .post-content img {
+      max-width: 100%;
       height: auto;
       border-radius: 8px;
-      transition: max-width 0.3s ease;
+      margin-bottom: 20px;
     }
     @media (max-width: 800px) {
       .header-container {
@@ -123,17 +100,6 @@
       .header-right {
         margin-top: 10px;
       }
-      .post {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .post .post-image {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-      .post .post-image {
-        display: none;
-      }
     }
   </style>
 </head>
@@ -141,20 +107,20 @@
   <header>
     <div class="container header-container">
       <div class="logo">
-        <a href="index.html">Vinicius Motta</a>
+        <a href="../index.html">Vinicius Motta</a>
       </div>
       <div class="header-right">
         <nav>
           <ul>
-            <li><a href="about.html">About</a></li>
+            <li><a href="../about.html">About</a></li>
           </ul>
         </nav>
         <div class="social">
           <a href="https://github.com/vmotta8" target="_blank">
-            <img src="assets/icons/github.png" alt="GitHub">
+            <img src="../assets/icons/github.png" alt="GitHub">
           </a>
           <a href="https://linkedin.com/in/vmotta8" target="_blank">
-            <img src="assets/icons/linkedin.png" alt="LinkedIn">
+            <img src="../assets/icons/linkedin.png" alt="LinkedIn">
           </a>
         </div>
       </div>
@@ -162,19 +128,14 @@
   </header>
 
   <main>
-    <div class="container">
-      <section id="posts">
-        <a class="post" href="posts/2025-01-14-callgraph.html">
-          <div class="post-text">
-            <h2>Extracting code snippets from a call graph in Go for LLM context</h2>
-            <p class="post-date">Jan 14, 2025</p>
-            <p>Extracting code snippets from a call graph in Go can provide better context for large language models (LLMs). This involves generating a call graph, collecting function snippets, and automating the extraction process to improve code understanding.</p>
-          </div>
-          <div class="post-image">
-            <img src="assets/2025-01-14-callgraph/image.jpg" alt="Post 1 Image">
-          </div>
-        </a>
-      </section>
+    <div class="container post-content">
+      <h1>Extracting code snippets from a call graph in Go for LLM context</h1>
+      <p class="post-date">Jan 14, 2025</p>
+      <img src="../assets/2025-01-14-callgraph/image.jpg" alt="Imagem do post">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod, nunc ut laoreet dignissim, nisi nisl tincidunt ante, a posuere elit sapien eu libero. Suspendisse potenti. Praesent commodo, nunc a fringilla faucibus, justo nulla vehicula sapien, vitae consequat quam neque nec elit.</p>
+      <p>Curabitur quis interdum nunc. Donec in libero in neque elementum consequat. Aliquam erat volutpat. Donec euismod, nunc vel malesuada finibus, purus nibh dapibus magna, et malesuada justo purus eu ante.</p>
+      <p>Phasellus dictum, sapien in hendrerit gravida, nisl lectus lacinia magna, at consequat arcu turpis eget massa. Sed ac velit a turpis faucibus convallis. Morbi aliquet justo ac magna dignissim, ut lacinia sem volutpat.</p>
+      <p><a href="../index.html">← Return to posts</a></p>
     </div>
   </main>
 </body>
