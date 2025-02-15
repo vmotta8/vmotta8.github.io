@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
 
-
   <meta property="og:title" content="Extracting code snippets from a call graph for LLM context">
-  <meta property="og:description" content="Extracting code snippets from a call graph can provide better context for large language models (LLMs). This involves generating the call graph, collecting function snippets, and automating the extraction process to enhance code understanding.">
+  <meta property="og:description" content="When working with a complex function and trying to get an LLM to help refactor or better understand its flow, one of the challenges is ensuring that the entire call chain is captured.">
   <meta property="og:image" content="https://viniciusmotta.com/assets/2025-01-19-callgraph/image.jpg">
   <meta property="og:url" content="https://viniciusmotta.com/posts/2025-01-19-callgraph.html">
   <meta property="og:type" content="article">
 
-  <title>Extracting Code Snippets - Vinicius Motta</title>
+  <title>Code Snippets for LLM - Vinicius Motta</title>
   <style>
     body {
       font-family: 'Baskerville', 'Hoefler Text', Garamond, 'Times New Roman', serif;
@@ -29,7 +28,6 @@
       margin: auto;
       padding: 0 10px;
     }
-    /* Header */
     header {
       background-color: #fdfdfd;
       padding: 10px 0;
@@ -101,6 +99,20 @@
       border-radius: 8px;
       margin-bottom: 20px;
     }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+    code {
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    }
+    video {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 4px;
+    }
     @media (max-width: 800px) {
       .header-container {
         flex-direction: column;
@@ -145,9 +157,117 @@
       <h1>Extracting code snippets from a call graph for LLM context</h1>
       <p class="post-date">Jan 19, 2025</p>
       <img src="../assets/2025-01-19-callgraph/image.jpg" alt="Imagem do post">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod, nunc ut laoreet dignissim, nisi nisl tincidunt ante, a posuere elit sapien eu libero. Suspendisse potenti. Praesent commodo, nunc a fringilla faucibus, justo nulla vehicula sapien, vitae consequat quam neque nec elit.</p>
-      <p>Curabitur quis interdum nunc. Donec in libero in neque elementum consequat. Aliquam erat volutpat. Donec euismod, nunc vel malesuada finibus, purus nibh dapibus magna, et malesuada justo purus eu ante.</p>
-      <p>Phasellus dictum, sapien in hendrerit gravida, nisl lectus lacinia magna, at consequat arcu turpis eget massa. Sed ac velit a turpis faucibus convallis. Morbi aliquet justo ac magna dignissim, ut lacinia sem volutpat.</p>
+
+      <p>
+        When working with a complex function and trying to get an LLM to help refactor or better understand its flow, one of the challenges is ensuring that <strong>the entire call chain</strong> is captured.
+      </p>
+      <p>
+        Tools like <a href="https://aider.chat/" target="_blank">Aider</a> and <a href="https://www.cursor.com/" target="_blank">Cursor</a> do a great job of providing context based on the repository, but when a function interacts with many others, some important parts tend to be left out. This means I often have to manually add those missing pieces or tweak the prompt until the LLM picks up all the right information.
+      </p>
+      <p>
+        The problem isn’t just about <strong>providing context</strong>—it’s about ensuring that <strong>a specific part of the code has complete context</strong>. I wanted a direct way to capture all function calls starting from a given function.
+      </p>
+      <hr>
+      <h2>What Was Built</h2>
+      <p>
+        I created a CLI in Go that generates a <strong>callgraph</strong> for a specific function. Instead of relying on a tool to extract context from the entire repository, this CLI maps <strong>exactly</strong> which functions are called from a specific entry point and organizes that context in a structured way.
+      </p>
+      <p>
+        For now, it only works with Go, as that’s the language I use the most in my day-to-day work.
+      </p>
+      <p>
+        <strong>GitHub Repository</strong><br>
+        You can check out the project and try it yourself: <a href="https://github.com/vmotta8/callgraph-cli" target="_blank"><strong>Callgraph CLI</strong></a>
+      </p>
+      <p>
+        <strong>Demo Video</strong><br>
+        <video controls>
+          <source src="../assets/2025-01-19-callgraph/callgraph-works.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+      </p>
+      <hr>
+      <h2>How It Works</h2>
+      <h3>1. Receiving Parameters</h3>
+      <p>
+        The CLI requires two pieces of information:
+      </p>
+      <ul>
+        <li><strong>The file where the function is located</strong> (path to the source code).</li>
+        <li><strong>The name of the function to analyze</strong>.</li>
+      </ul>
+      <hr>
+      <h3>2. Static Analysis and SSA Representation</h3>
+      <p>
+        Once the parameters are received, the tool performs <strong>static analysis</strong> on the code. This means it inspects the structure of the code without executing it, allowing it to understand <strong>which function calls which</strong> within the program.
+      </p>
+      <p>
+        To make this analysis more efficient, the code is converted into an intermediate form called <strong>SSA (Static Single Assignment)</strong>.
+      </p>
+      <p>
+        SSA is an intermediate representation used in compilers and analysis tools to better organize code. The key concept behind SSA is that <strong>each variable is assigned exactly once</strong>. Instead of overwriting variables, new versions of them are created as the program progresses.
+      </p>
+      <p>
+        For example, take this simple function:
+      </p>
+      <pre><code>func sum(a, b int) int {
+    x := a + b
+    x = x * 2
+    return x
+}</code></pre>
+      <p>
+        In SSA form, it would look like this:
+      </p>
+      <pre><code>func sum(a, b int) int {
+    x1 := a + b
+    x2 := x1 * 2
+    return x2
+}</code></pre>
+      <p>
+        Here, <code>x</code> is never overwritten. Instead, we create <code>x1</code> and <code>x2</code>, making it clear how values flow through the function. This helps in understanding the structure of the code and avoids ambiguities when tracking dependencies and function calls.
+      </p>
+      <hr>
+      <h3>3. Building the Callgraph with CHA</h3>
+      <p>
+        With the code converted to SSA, the tool uses a library called <strong>CHA (Call Hierarchy Analyzer)</strong> to build the <em>callgraph</em>.
+      </p>
+      <p>
+        CHA processes the SSA version of the code and identifies <strong>all functions called from the selected function</strong>, either directly or indirectly. In the end, it produces a graph that represents exactly which functions participate in execution starting from that point.
+      </p>
+      <p>
+        This graph solves the problem of incomplete context because it captures <strong>the entire call sequence</strong>.
+      </p>
+      <p>
+        Below is a visual example of what a <em>callgraph</em> might look like for a function <code>run()</code> that calls other functions:
+      </p>
+      <pre><code>run()
+├── DetectLanguage()
+│    ├── hasGoMod()
+│    ├── hasPackageJSON()
+│    ├── hasRequirementsTxt()
+│    └── hasCargoToml()
+├── GetAnalyzer()
+├── AnalyzeChain()
+│    ├── buildCallGraph()
+│    │    ├── findGoModRoot()
+│    │    ├── findFunctionByName()
+│    │    ├── convertCallGraphToCustomStructure()
+│    │    └── buildCallGraphNode()
+│    │         └── extractFunctionCode()
+├── SaveAnalysisResult()</code></pre>
+      <p>
+        Each function here represents a node in the graph, showing the hierarchical relationship between function calls. If we were only looking at <code>run()</code>, we might miss critical details about functions executed in cascade. The <em>callgraph</em> provides a <strong>complete picture</strong> of what happens in execution.
+      </p>
+      <hr>
+      <h3>4. Output of the Results</h3>
+      <p>
+        Once the callgraph is built, the CLI formats the result into a structured JSON output, which can be:
+      </p>
+      <ul>
+        <li><strong>Displayed in the terminal</strong>, for quick inspection.</li>
+        <li><strong>Copied to the clipboard</strong>, making it easy to use with an LLM.</li>
+        <li><strong>Saved to a file</strong>, for future analysis or integration with other tools.</li>
+      </ul>
       <p><a href="../index.html">← Return to posts</a></p>
     </div>
   </main>
